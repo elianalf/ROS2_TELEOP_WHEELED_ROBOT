@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<robot>
+
+  <gazebo reference="body_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="wheel1_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="wheel2_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="wheel3_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="wheel4_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo>
+    <plugin name='skid_steer_drive' filename='libgazebo_ros_diff_drive.so'>
+        <ros>
+            <namespace> </namespace>
+        </ros>
+
+        <num_wheel_pairs>2</num_wheel_pairs>
+
+        <left_joint>wheel4_joint</left_joint>
+        <right_joint>wheel3_joint</right_joint>
+
+        <left_joint>wheel2_joint</left_joint>
+        <right_joint>wheel1_joint</right_joint>
+
+        <wheel_separation>${body_link_y_dim+wheel_link_length}</wheel_separation>
+        <wheel_separation>${body_link_y_dim+wheel_link_length}</wheel_separation>
+
+        <wheel_diameter>${wheel_link_radius}</wheel_diameter>
+        <wheel_diameter>${wheel_link_radius}</wheel_diameter>
+
+        <max_wheel_torque>1000</max_wheel_torque>
+        <max_wheel_acceleration>5.0</max_wheel_acceleration>
+
+        <publish_ododm>true</publish_ododm>
+        <publish_ododm_tf>true</publish_ododm_tf>
+        <publish_wheel_tf>true</publish_wheel_tf>
+
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>dummy</robot_base_frame>
+    </plugin>
+  </gazebo>
+
+</robot>
